@@ -1,0 +1,47 @@
+<!-- carousel.component.html -->
+<div class="container">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let slide of slides; let i = index" [class.active]="i === 0">
+        <img [src]="slide.imageUrl" class="d-block w-100" alt="Slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ slide.caption }}</h5>
+      </div>
+    </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+<!-- List of slides with delete buttons -->
+<ul class=" mt-3">
+  <h2 *ngIf="slides.length>0">Added Slides </h2>
+  <li  *ngFor="let slide of slides; let i = index">
+      <p  style="display: inline;">{{ slide.caption }}</p>
+      <button class="btn btn-danger deleteslide" (click)="deleteSlide(i)"><i class="fas fa-trash"></i></button>
+ 
+  </li>
+</ul>
+
+<div class="container mt-4">
+  <!-- Form to add new slides -->
+  <h2>Add New Slide</h2>
+  <form (ngSubmit)="addSlide()" class="mt-3">
+    <div class="form-group">
+      <label for="imageUrl">Image URL:</label>
+      <input type="text" class="form-control" [(ngModel)]="imageUrl" name="imageUrl" id="imageUrl" placeholder="Image URL">
+    </div>
+    <div class="form-group mt-3">
+      <label for="caption">Caption:</label>
+      <input type="text" class="form-control " [(ngModel)]="caption" name="caption" id="caption" placeholder="Caption">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Add Slide</button>
+  </form>
+</div>
+</div>
