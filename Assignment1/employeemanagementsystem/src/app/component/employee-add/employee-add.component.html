@@ -1,0 +1,53 @@
+<div class="container mt-3">
+    <h1 class="form-heading mt-3">{{ isEdit? 'Edit Employee' : 'Add Employee' }}</h1>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+        <!-- Employee details fields -->
+        <label for="employeeId">Employee ID</label>
+        <input id="employeeId" type="number" formControlName="id" placeholder="Employee ID">
+
+        <label for="employeeName"> Name</label>
+        <input id="employeeName" type="text" formControlName="name" placeholder="Employee Name">
+
+        <label for="contactNumber">Contact Number</label>
+        <input id="contactNumber" type="text" formControlName="contactNumber" placeholder="Contact Number">
+
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="Email">
+
+        <div class="gender-radio ">
+            <label class="mr-2">Gender:</label>
+            <label><input type="radio" formControlName="gender" value="Male"> Male</label>
+            <label><input type="radio" formControlName="gender" value="Female"> Female</label>
+        </div>
+
+        <!-- Skills -->
+    
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-success addskill" type="button" (click)="addSkill()">Add Skill +</button>
+          </div>
+
+        <div formArrayName="skills" class="skills-container ">
+            <label for="skillName">Skills:</label>
+            <div *ngFor="let skill of skillsArray.controls; let i = index;" class="skill-group">
+                <div [formGroupName]="i" class="skill-inputs d-flex mr-2">
+                    <input id="skillName" type="text" formControlName="name" placeholder=" Enter Skill Name">
+                    <select class="form-select"id="floatingSelect" aria-label="Floating label select example" formControlName="experience">
+                        <option value="" disabled selected>Select Experience </option>
+                        <option value="{Exp. 1 year}">Exp. 1 year</option>
+                        <option value="{Exp. 2 years}">Exp. 2 years</option>
+                        <option value="{Exp. 3 years}">Exp. 3 years</option>
+                        <option value="{Exp. 4 years}">Exp. 4 years</option>
+                        <option value="{Exp. 4 years above}">Exp. 4 years above </option>
+                        <!-- Add more options for different experience levels -->
+                      </select>                   
+                    <button type="button" (click)="removeSkill(i)" *ngIf="skillsArray.length > 1 || i !== 0"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary"type="submit">{{ isEdit ? 'Update' : 'Submit' }}</button>
+
+    </form>
+
+
+</div>

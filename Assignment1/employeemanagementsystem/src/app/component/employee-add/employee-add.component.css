@@ -1,0 +1,70 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .employee-form {
+    display: flex;
+    flex-direction: column;
+  }
+  h1{
+    text-align: center;
+  }
+  label {
+    margin-top: 10px;
+  }
+  input[type="number"],
+  input[type="text"],
+  input[type="email"],
+  button {
+    margin-top: 5px;
+    margin-right: 30px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+  }
+  
+  .gender-radio {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .gender-radio label {
+    margin-right: 10px;
+  }
+  
+  .skills-container {
+    margin-top: 10px;
+  }
+  
+  .skill-group {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+ 
+  
+  .skill-group button {
+    padding: 6px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+  
+  button{
+    width:max-content;
+  }
+
+  .addskill{
+
+  }

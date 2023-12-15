@@ -1,0 +1,70 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+      <a class="navbar-brand" href="#">Employee Management System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="d-flex">
+            <button class="btn btn-success" style="float: right;" [routerLink]="['/employee/add']">Add Employee</button>
+        </div>
+</div>
+</nav>
+
+<div class="employee-list">
+    <h2>Employee List</h2>
+    <table>
+      <thead>
+        <tr>
+        <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>Gender</th>
+          <th>Skills</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.contactNumber }}</td>
+          <td>{{ employee.gender }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let skill of employee.skills">
+                {{ skill.name }} - {{ skill.experience }}
+              </li>
+            </ul>
+          </td>
+        
+            <td>
+              <a class="edit-link" [routerLink]="['/employee/edit', employee.id]"> <i class="fas fa-edit"></i></a>
+                <button (click)="prepareToDelete(employee)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+              
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="employeeToDelete" class="overlay">
+    <div class="confirmation-dialog">
+      <p>{{ deleteMessage }}</p>
+      <button (click)="confirmDelete()">Yes</button>
+      <button (click)="cancelDelete()">No</button>
+    </div>
+  </div>
+
+  <div *ngIf="deleteMessageVisible" class="overlay">
+    <div class="delete-success-message">
+      <p>{{ deleteMessage }}</p>
+    </div>
+  </div>
+
+  
+
