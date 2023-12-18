@@ -28,11 +28,36 @@ export class CarouselComponent {
     }
   }
 
-
   deleteSlide(index: number) {
     this.slideService.deleteSlide(index);
     this.slides = this.slideService.getAllSlides();
+  
+    const activeIndex = this.getActiveSlideIndex();
+  
+    // Check if the deleted slide is the active slide
+    if (activeIndex === index) {
+      const newActiveIndex = activeIndex >= this.slides.length ? this.slides.length - 1 : activeIndex;
+      this.setActiveSlide(newActiveIndex);
+    }
   }
-
-
+  
+  getActiveSlideIndex(): number {
+    const activeSlide = document.querySelector('.carousel-item.active');
+    if (activeSlide) {
+      return Array.from(activeSlide.parentElement!.children).indexOf(activeSlide);
+    }
+    return -1; // Return an invalid index if activeSlide is null
+  }
+  
+  setActiveSlide(index: number) {
+    const slides = document.querySelectorAll('.carousel-item');
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+  }
+  
 }
